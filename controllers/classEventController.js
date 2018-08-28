@@ -16,5 +16,12 @@ module.exports = {
     }).catch(err => {
       res.send(err)
     })
+  },
+  all: function (req, res, next) {
+    ClassEvent.findAll().then(classEvents => {
+      res.json(classEvents)
+    }).catch(err => {
+      res.send(err)
+    })
   }
 }
