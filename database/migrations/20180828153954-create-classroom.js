@@ -42,9 +42,7 @@ module.exports = {
         references: {
           model: 'ClassEvents',
           key: 'id'
-        },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
+        }
       },
       createdAt: {
         allowNull: false,

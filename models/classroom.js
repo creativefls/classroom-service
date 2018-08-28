@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     classEventId: DataTypes.INTEGER
   }, {});
   Classroom.associate = function(models) {
-    Classroom.hasMany(models.ClassEvent, { foreignKey: 'classEventId' })
+    Classroom.belongsTo(models.ClassEvent, { foreignKey: 'classEventId' })
+    Classroom.hasMany(models.ClassroomAssign, { foreignKey: 'classroomId' })
   };
   return Classroom;
 };
