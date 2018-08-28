@@ -6,7 +6,6 @@ module.exports = {
       name: req.body.name,
       description: req.body.description,
       imageUrl: req.body.imageUrl,
-      quota: req.body.quota,
       openReg: req.body.openReg,
       closeReg: req.body.closeReg,
       scope: req.body.scope,

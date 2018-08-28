@@ -4,10 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     imageUrl: DataTypes.STRING,
-    quota: DataTypes.INTEGER,
     openReg: DataTypes.DATE,
     closeReg: DataTypes.DATE,
-    isClosed: DataTypes.BOOLEAN,
     scope: DataTypes.STRING,
     classType: DataTypes.STRING
   }, {});

@@ -17,19 +17,11 @@ module.exports = {
       imageUrl: {
         type: Sequelize.STRING
       },
-      quota: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
-      },
       openReg: {
         type: Sequelize.DATE
       },
       closeReg: {
         type: Sequelize.DATE
-      },
-      isClosed: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
       },
       scope: {
         type: Sequelize.STRING,
