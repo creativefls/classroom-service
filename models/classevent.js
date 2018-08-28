@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     quota: DataTypes.INTEGER,
     openReg: DataTypes.DATE,
     closeReg: DataTypes.DATE,
-    closed: DataTypes.BOOLEAN,
+    isClosed: DataTypes.BOOLEAN,
     scope: DataTypes.STRING,
     classType: DataTypes.STRING
   }, {});
