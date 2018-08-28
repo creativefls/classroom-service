@@ -35,6 +35,15 @@ module.exports = {
       quota: {
         type: Sequelize.INTEGER
       },
+      classEventId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'ClassEvents',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

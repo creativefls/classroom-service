@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     classType: DataTypes.STRING
   }, {});
   ClassEvent.associate = function(models) {
-    // associations can be defined here
+    ClassEvent.hasMany(models.Classroom, { foreignKey: 'classEventId' })
   };
   return ClassEvent;
 };

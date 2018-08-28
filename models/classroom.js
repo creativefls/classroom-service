@@ -9,10 +9,11 @@ module.exports = (sequelize, DataTypes) => {
     isClosed: DataTypes.BOOLEAN,
     materialUrl: DataTypes.STRING,
     additionalName: DataTypes.STRING,
-    quota: DataTypes.INTEGER
+    quota: DataTypes.INTEGER,
+    classEventId: DataTypes.INTEGER
   }, {});
   Classroom.associate = function(models) {
-    // associations can be defined here
+    Classroom.hasMany(models.ClassEvent, { foreignKey: 'classEventId' })
   };
   return Classroom;
 };
