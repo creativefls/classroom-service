@@ -1,4 +1,4 @@
-const { Classroom } = require('../models')
+const { Classroom, ClassEvent } = require('../models')
 
 module.exports = {
   create: function (req, res, next) {
@@ -19,7 +19,22 @@ module.exports = {
     })
   },
   findAll: function (req, res, next) {
-
+    Classroom.findAll({
+      include: [
+        {
+          model: ClassEvent,
+          // as: 'acaraku',
+          // where: { scope: 'fls2018' },
+          attributes: {
+            exclude: ['createdAt', 'updatedAt', 'id']
+          }
+        }
+      ]
+    }).then(classroom => {
+      res.json(classroom)
+    }).catch(err => {
+      res.send(err)
+    })
   },
   findById: function (req, res, next) {
 
