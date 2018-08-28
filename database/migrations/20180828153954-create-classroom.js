@@ -24,7 +24,8 @@ module.exports = {
         type: Sequelize.DATE
       },
       isClosed: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       materialUrl: {
         type: Sequelize.STRING
@@ -33,7 +34,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       quota: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       },
       classEventId: {
         type: Sequelize.INTEGER,
