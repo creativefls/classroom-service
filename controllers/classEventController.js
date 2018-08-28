@@ -17,9 +17,18 @@ module.exports = {
       res.send(err)
     })
   },
-  all: function (req, res, next) {
+  findAll: function (req, res, next) {
     ClassEvent.findAll().then(classEvents => {
       res.json(classEvents)
+    }).catch(err => {
+      res.send(err)
+    })
+  },
+  findById: function (req, res, next) {
+    ClassEvent.findAll({
+      where: { id: req.params.id }
+    }).then(classEvent => {
+      res.json(classEvent)
     }).catch(err => {
       res.send(err)
     })
