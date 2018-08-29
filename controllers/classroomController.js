@@ -1,4 +1,5 @@
 const { Classroom, ClassEvent, ClassroomAssign } = require('../models')
+const { getClassroomById, assignUserToClassroom }  =require('../factory')
 
 module.exports = {
   create: function (req, res, next) {
@@ -41,15 +42,29 @@ module.exports = {
       id: req.params.id
     })
   },
-  assignUser: function (req, res, next) {
-    ClassroomAssign.create({
-      userId: req.body.userId,
-      classroomId: req.body.classroomId
-    }).then(item => {
-      res.json(item)
-    }).catch(err => {
-      res.status(500).send(err)
-    })
+  assignUser: async function (req, res, next) {
+    const userId = req.body.userId
+    const classroomId = req.body.classroomId
+
+    try {
+      let classroomStat = await getClassroomById(classroomId)
+
+      if (classroomStat.isClosed) {
+        throw {
+          status: 403,
+          name: 'http',
+          message: 'classroom closed'
+        }
+      }
+
+      let response = await assignUserToClassroom({ userId, classroomId })
+      res.send(response)
+    } catch (error) {
+      res.status(error.status || 500).send({
+        error: error.name,
+        message: error.message
+      })
+    }
   },
   findAssignAll: function (req, res, next) {
     ClassroomAssign.findAll({
