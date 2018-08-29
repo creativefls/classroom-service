@@ -15,7 +15,7 @@ module.exports = {
     }).then(classroom => {
       res.json(classroom)
     }).catch(err => {
-      res.send(err)
+      res.status(500).send(err)
     })
   },
   findAll: function (req, res, next) {
