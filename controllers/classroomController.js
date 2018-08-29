@@ -37,7 +37,9 @@ module.exports = {
     })
   },
   findById: function (req, res, next) {
-
+    res.send({
+      id: req.params.id
+    })
   },
   assignUser: function (req, res, next) {
     ClassroomAssign.create({
@@ -49,4 +51,24 @@ module.exports = {
       res.status(500).send(err)
     })
   },
+  findAssignAll: function (req, res, next) {
+    ClassroomAssign.findAll({
+      include: [{
+        model: Classroom,
+        attributes: {
+          exclude: ['createdAt', 'updatedAt']
+        },
+        include: [{
+          model: ClassEvent,
+          attributes: {
+            exclude: ['createdAt', 'updatedAt']
+          },
+        }]
+      }]
+    }).then(items => {
+      res.json(items)
+    }).catch(err => {
+      res.status(500).send(err)
+    })
+  }
 }
