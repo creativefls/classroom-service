@@ -22,7 +22,15 @@ async function assignUserToClassroom ({ userId, classroomId}) {
   return result
 }
 
+async function deleteClassRoom (classroomId) {
+  return await Classroom.destroy({
+    where: { id: classroomId },
+    limit: 1
+  })
+}
+
 module.exports = {
   getClassroomById,
-  assignUserToClassroom
+  assignUserToClassroom,
+  deleteClassRoom
 }

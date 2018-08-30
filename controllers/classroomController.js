@@ -1,5 +1,9 @@
 const { Classroom, ClassEvent, ClassroomAssign } = require('../models')
-const { getClassroomById, assignUserToClassroom }  =require('../factory')
+const {
+  getClassroomById,
+  assignUserToClassroom,
+  deleteClassRoom
+}  =require('../factory')
 
 module.exports = {
   create: function (req, res, next) {
@@ -49,6 +53,12 @@ module.exports = {
     try {
       let classroomStat = await getClassroomById(classroomId)
 
+      /*  TODO: validasi
+        * class closed  -> OK
+        * waktu openReg
+        * waktu cloReg
+        * quota penuh
+      */
       if (classroomStat.isClosed) {
         throw {
           status: 403,
@@ -85,5 +95,21 @@ module.exports = {
     }).catch(err => {
       res.status(500).send(err)
     })
+  },
+  delete: async function (req, res, next) {
+    const classroomId = req.body.id
+
+    try {
+      let response = await deleteClassRoom(classroomId)
+      res.send({
+        message: 'delete success',
+        data: response
+      })
+    } catch (error) {
+      res.status(error.status || 500).send({
+        error: error.name,
+        message: error.message
+      })
+    }
   }
 }
