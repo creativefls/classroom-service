@@ -2,7 +2,8 @@ const { Classroom, ClassEvent, ClassroomAssign } = require('../models')
 const {
   getClassroomById,
   assignUserToClassroom,
-  deleteClassRoom
+  deleteClassroom,
+  patchClassroom
 }  =require('../factory')
 
 module.exports = {
@@ -100,9 +101,34 @@ module.exports = {
     const classroomId = req.body.id
 
     try {
-      let response = await deleteClassRoom(classroomId)
+      let response = await deleteClassroom(classroomId)
       res.send({
         message: 'delete success',
+        data: response
+      })
+    } catch (error) {
+      res.status(error.status || 500).send({
+        error: error.name,
+        message: error.message
+      })
+    }
+  },
+  patch: async function (req, res, next) {
+    const classroomId = req.params.id
+    let data = {
+      name: req.body.name,
+      description: req.body.description,
+      materialUrl: req.body.materialUrl,
+      quota: req.body.quota,
+      isClosed: req.body.isClosed,
+      imageUrl: req.body.imageUrl,
+      additionalName: req.body.additionalName,
+    }
+
+    try {
+      let response = await patchClassroom(classroomId, data)
+      res.json({
+        message: 'update success',
         data: response
       })
     } catch (error) {
