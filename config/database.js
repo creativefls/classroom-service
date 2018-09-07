@@ -22,11 +22,10 @@ module.exports = {
     "dialect": "postgres"
   },
   "production": {
-    "username": process.env.RDS_USERNAME || '',
-    "password": process.env.RDS_PASSWORD || '',
-    "database": process.env.RDS_DB_NAME || 'bukalelang-db',
-    "host": process.env.RDS_HOSTNAME || '',
-    "port": process.env.RDS_PORT || '5432',
+    "username": process.env.PG_USERNAME || '',
+    "password": process.env.PG_PASSWORD || '',
+    "database": process.env.PG_DATABASE || 'bukalelang-db',
+    "host": process.env.PG_HOSTNAME || '',
     "dialect": "postgres"
   }
 }
